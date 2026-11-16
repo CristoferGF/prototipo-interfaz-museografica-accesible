@@ -1,0 +1,628 @@
+/* NFC Accessibility Plugin - Encapsulated Stylesheet */
+
+/* Prevenir fugas de estilo: todo está encapsulado bajo #nfc-plugin-root */
+#nfc-plugin-root {
+  --nfc-bg-dark: #0a0a0a;
+  --nfc-bg-card: #121212;
+  --nfc-bg-card-hover: #181818;
+  --nfc-accent-yellow: #ffd700;
+  --nfc-accent-yellow-rgb: 255, 215, 0;
+  --nfc-text-primary: #ffffff;
+  --nfc-text-secondary: #aaaaaa;
+  --nfc-text-muted: #666666;
+  --nfc-border-color: #222222;
+  --nfc-success-green: #39ff14;
+  --nfc-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --nfc-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --nfc-focus-outline: 3px solid var(--nfc-accent-yellow);
+
+  font-family: var(--nfc-font-family);
+  color: var(--nfc-text-primary);
+  background-color: var(--nfc-bg-dark);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1000;
+}
+
+#nfc-plugin-root *,
+#nfc-plugin-root *::before,
+#nfc-plugin-root *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Modos de visualización: pasivo (oculto) y activo */
+#nfc-plugin-root.nfc-passive {
+  display: none !important;
+}
+
+#nfc-plugin-root.nfc-active {
+  display: flex !important;
+  animation: nfcFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes nfcFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Foco accesible */
+#nfc-plugin-root *:focus-visible {
+  outline: var(--nfc-focus-outline);
+  outline-offset: 4px;
+}
+
+/* Contenedor Principal (Layout de Rejilla de Dos Columnas) */
+#nfc-plugin-root .nfc-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 968px) {
+  #nfc-plugin-root .nfc-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Columna Izquierda: Reproductor Multimedia */
+#nfc-plugin-root .nfc-player-section {
+  background-color: var(--nfc-bg-card);
+  border: 1px solid var(--nfc-border-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 520px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Encabezado de la zona NFC */
+#nfc-plugin-root .nfc-zone-header {
+  align-self: flex-start;
+  width: 100%;
+  border-bottom: 1px solid var(--nfc-border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#nfc-plugin-root .nfc-zone-badge {
+  color: var(--nfc-accent-yellow);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#nfc-plugin-root .nfc-zone-badge::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--nfc-accent-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--nfc-accent-yellow);
+  animation: nfcPulse 1.5s infinite alternate;
+}
+
+#nfc-plugin-root .nfc-zone-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+/* Gran botón central de reproducción */
+#nfc-plugin-root .nfc-play-btn-wrapper {
+  position: relative;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nfc-plugin-root .nfc-play-btn {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--nfc-accent-yellow);
+  color: var(--nfc-bg-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  transition: var(--nfc-transition);
+}
+
+#nfc-plugin-root .nfc-play-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+}
+
+#nfc-plugin-root .nfc-play-btn svg {
+  width: 50px;
+  height: 50px;
+  fill: currentColor;
+  transition: var(--nfc-transition);
+}
+
+/* Pulsación de reproducción activa */
+#nfc-plugin-root .nfc-play-btn.playing {
+  animation: nfcGlowPulse 2s infinite ease-in-out;
+}
+
+@keyframes nfcGlowPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Texto de Estado */
+#nfc-plugin-root .nfc-status-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#nfc-plugin-root .nfc-status-text {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--nfc-accent-yellow);
+}
+
+#nfc-plugin-root .nfc-subtitle-text {
+  font-size: 0.95rem;
+  color: var(--nfc-text-secondary);
+  margin-top: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+/* Controles de Salto (Anterior/Siguiente) y Contenedor de Tiempo */
+#nfc-plugin-root .nfc-media-nav-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  gap: 1.5rem;
+}
+
+#nfc-plugin-root .nfc-nav-btn {
+  background: none;
+  border: none;
+  color: var(--nfc-text-secondary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--nfc-transition);
+  min-width: 80px;
+}
+
+#nfc-plugin-root .nfc-nav-btn:hover {
+  color: var(--nfc-accent-yellow);
+}
+
+#nfc-plugin-root .nfc-nav-btn svg {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+/* Barra de Progreso */
+#nfc-plugin-root .nfc-timeline-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#nfc-plugin-root .nfc-progress-bar-wrapper {
+  width: 100%;
+  height: 6px;
+  background-color: var(--nfc-border-color);
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#nfc-plugin-root .nfc-progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--nfc-accent-yellow);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+#nfc-plugin-root .nfc-time-display {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--nfc-text-primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* Controles de Volumen y Velocidad */
+#nfc-plugin-root .nfc-audio-parameters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--nfc-border-color);
+}
+
+#nfc-plugin-root .nfc-parameter-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--nfc-border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#nfc-plugin-root .nfc-parameter-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--nfc-text-secondary);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#nfc-plugin-root .nfc-parameter-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+/* Barras visuales dinámicas para volumen */
+#nfc-plugin-root .nfc-volume-meter {
+  display: flex;
+  gap: 3px;
+  height: 16px;
+  align-items: flex-end;
+}
+
+#nfc-plugin-root .nfc-volume-bar {
+  width: 4px;
+  height: 100%;
+  background-color: var(--nfc-border-color);
+  border-radius: 2px;
+  transition: var(--nfc-transition);
+}
+
+#nfc-plugin-root .nfc-volume-bar.active {
+  background-color: var(--nfc-accent-yellow);
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+/* Indicador de velocidad */
+#nfc-plugin-root .nfc-speed-badge {
+  background-color: rgba(255, 215, 0, 0.1);
+  color: var(--nfc-accent-yellow);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Barra de estado inferior */
+#nfc-plugin-root .nfc-hardware-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--nfc-border-color);
+  font-size: 0.75rem;
+  color: var(--nfc-text-secondary);
+}
+
+#nfc-plugin-root .nfc-hw-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#nfc-plugin-root .nfc-hw-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--nfc-success-green);
+  animation: nfcWifiPulse 2s infinite ease-in-out;
+}
+
+@keyframes nfcWifiPulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* Grupo de botones de modo (Guía vs Explorar) */
+#nfc-plugin-root .nfc-mode-selector {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#nfc-plugin-root .nfc-mode-btn {
+  background: none;
+  border: 1px solid var(--nfc-border-color);
+  color: var(--nfc-text-secondary);
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--nfc-transition);
+}
+
+#nfc-plugin-root .nfc-mode-btn.active {
+  background-color: var(--nfc-accent-yellow);
+  color: var(--nfc-bg-dark);
+  border-color: var(--nfc-accent-yellow);
+  font-weight: 800;
+}
+
+/* Columna Derecha: Ficha Técnica Accesible */
+#nfc-plugin-root .nfc-specimen-details {
+  background-color: var(--nfc-bg-card);
+  border: 1px solid var(--nfc-border-color);
+  border-radius: 16px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
+
+#nfc-plugin-root .nfc-meta-section-title {
+  color: var(--nfc-accent-yellow);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+#nfc-plugin-root .nfc-specimen-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+#nfc-plugin-root .nfc-specimen-scientific {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--nfc-text-secondary);
+  margin-top: -0.5rem;
+}
+
+#nfc-plugin-root .nfc-description-box {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid var(--nfc-accent-yellow);
+  border-radius: 4px;
+  padding: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--nfc-text-primary);
+  margin: 0.5rem 0;
+}
+
+/* Grilla de atributos rápidos */
+#nfc-plugin-root .nfc-quick-attributes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+#nfc-plugin-root .nfc-attribute-card {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--nfc-border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+#nfc-plugin-root .nfc-attribute-key {
+  font-size: 0.65rem;
+  color: var(--nfc-text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#nfc-plugin-root .nfc-attribute-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+
+/* Información de Tag y Señal */
+#nfc-plugin-root .nfc-tag-meta {
+  border-top: 1px solid var(--nfc-border-color);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+#nfc-plugin-root .nfc-meta-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+#nfc-plugin-root .nfc-meta-label {
+  color: var(--nfc-text-secondary);
+  font-weight: 500;
+}
+
+#nfc-plugin-root .nfc-meta-value {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+#nfc-plugin-root .nfc-signal-excellent {
+  color: var(--nfc-success-green);
+}
+
+#nfc-plugin-root .nfc-signal-good {
+  color: #5bc0de;
+}
+
+/* Indicador de narrador activo */
+#nfc-plugin-root .nfc-narrator-badge {
+  background-color: rgba(255, 215, 0, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+#nfc-plugin-root .nfc-narrator-icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--nfc-accent-yellow);
+}
+
+#nfc-plugin-root .nfc-narrator-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#nfc-plugin-root .nfc-narrator-label {
+  font-size: 0.65rem;
+  color: var(--nfc-text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+#nfc-plugin-root .nfc-narrator-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Región aria-live oculta visualmente pero leída por lectores de pantalla */
+#nfc-plugin-root .nfc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Efectos de pulso y animación comunes */
+@keyframes nfcPulse {
+  0% {
+    box-shadow: 0 0 2px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  }
+}
+
+/* Botones Interactivos de Volumen y Velocidad en Pantalla (A11y & WCAG 2.1) */
+#nfc-plugin-root .nfc-parameter-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--nfc-border-color);
+  color: var(--nfc-text-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: var(--nfc-transition);
+  user-select: none;
+}
+
+#nfc-plugin-root .nfc-parameter-btn:hover {
+  background-color: var(--nfc-accent-yellow);
+  color: var(--nfc-bg-dark);
+  border-color: var(--nfc-accent-yellow);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+#nfc-plugin-root .nfc-parameter-btn:active {
+  transform: translateY(1px);
+}
+
+#nfc-plugin-root .nfc-parameter-value-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: flex-start !important;
+}
+
+#nfc-plugin-root .nfc-volume-meter {
+  margin-left: auto;
+}
+
+#nfc-plugin-root .nfc-speed-badge {
+  margin-left: auto;
+}

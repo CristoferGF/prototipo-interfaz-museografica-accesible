@@ -1,0 +1,67 @@
+{
+  "044BFA197F6180": {
+    "title": "Spiral Ammonite",
+    "scientificName": "Nautilus macrocephalus",
+    "description": "Esta vista frontal del espécimen revela el crecimiento logarítmico de la cámara. Las suturas visibles son indicativas de un individuo adulto en el periodo Cretácico Superior.",
+    "origin": "Cordillera Real",
+    "age": "120M Años",
+    "tagId": "04:4B:FA:19:7F:61:80",
+    "signal": "EXCELENTE (-45dBm)",
+    "audioNarrator": "Voz Narrador A (Masculino)",
+    "section": "Audio Guía: Sección 04/12",
+    "duration": 320,
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  },
+  "04D0241B7F6180": {
+    "title": "Trilobite Fossil",
+    "scientificName": "Elrathia kingii",
+    "description": "Este trilobite del periodo Cámbrico presenta un exoesqueleto perfectamente segmentado. Su morfología revela adaptaciones avanzadas para la vida bentónica marina en aguas poco profundas de los océanos ancestrales.",
+    "origin": "Desierto de Atacama",
+    "age": "500M Años",
+    "tagId": "04:D0:24:1B:7F:61:80",
+    "signal": "BUENA (-60dBm)",
+    "audioNarrator": "Voz Narradora B (Femenina)",
+    "section": "Audio Guía: Sección 01/08",
+    "duration": 225,
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+  },
+  "04A4391D7F6180": {
+    "title": "Tupuxuara Skull",
+    "scientificName": "Tupuxuara leonardii",
+    "description": "El cráneo preservado destaca por su enorme cresta sagital ósea, la cual cumplía funciones cruciales de termorregulación aerodinámica y exhibición de cortejo durante el periodo Cretácico Inferior.",
+    "origin": "Cuenca del Araripe",
+    "age": "112M Años",
+    "tagId": "04:A4:39:1D:7F:61:80",
+    "signal": "EXCELENTE (-40dBm)",
+    "audioNarrator": "Voz Narrador C (Neutro)",
+    "section": "Audio Guía: Sección 06/10",
+    "duration": 252,
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+  },
+  "04F6DA1A7F6180": {
+    "title": "Megatherium Claw",
+    "scientificName": "Megatherium americanum",
+    "description": "Esta garra fosilizada de perezoso gigante terrestre del Pleistoceno destaca por su gran tamaño y curvatura. Adaptada para excavar raíces y defenderse de depredadores en los valles andinos.",
+    "origin": "Valle de los Chillos",
+    "age": "15,000 Años",
+    "tagId": "04:F6:DA:1A:7F:61:80",
+    "signal": "EXCELENTE (-48dBm)",
+    "audioNarrator": "Voz Narrador D (Grave)",
+    "section": "Audio Guía: Sección 09/12",
+    "duration": 280,
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+  },
+  "04CAB01B7F6181": {
+    "title": "Obsidian Core",
+    "scientificName": "Obsidiana vítrea",
+    "description": "Núcleo volcánico vítreo de alta pureza. La fractura concoidea de este espécimen facilitó la elaboración de herramientas y armas cortantes por parte de las sociedades prehispánicas en la sierra norte ecuatoriana.",
+    "origin": "Sierra de Quiscatola",
+    "age": "8,000 Años",
+    "tagId": "04:CA:B0:1B:7F:61:81",
+    "signal": "BUENA (-55dBm)",
+    "audioNarrator": "Voz Narradora E (Acento Suave)",
+    "section": "Audio Guía: Sección 11/12",
+    "duration": 195,
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+  }
+}

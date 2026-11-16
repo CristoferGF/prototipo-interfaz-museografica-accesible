@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Museum - Colección Científica EPN</title>
+  
+  <!-- Tipografías de Google Fonts para una estética premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Hojas de estilos del proyecto base y del plugin accesible -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nfc-accessibility-plugin.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       VISTA ORIGINAL DEL COMPAÑERO (Página de Inicio del Museo)
+       ========================================================================== -->
+  <div class="coworker-landing" id="coworker-landing-view">
+    <!-- Encabezado de la Estación -->
+    <header class="coworker-header">
+      <div class="coworker-logo-group">
+        <div class="coworker-logo-box">
+          <svg class="coworker-logo-icon" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="coworker-logo-text">
+          <span class="coworker-logo-title">Digital Museum</span>
+          <span class="coworker-logo-subtitle">EPN Scientific Collection</span>
+        </div>
+      </div>
+      <div class="coworker-sys-ready">
+        <div class="coworker-sys-dot"></div>
+        <span>System Ready</span>
+      </div>
+    </header>
+
+    <!-- Zona Central de Escaneo -->
+    <main class="coworker-scanner-section">
+      <div class="coworker-scanner-bracket">
+        <div class="coworker-bracket-corner-bl"></div>
+        <div class="coworker-bracket-corner-br"></div>
+        <div class="coworker-scanner-circle">
+          <!-- Icono NFC de tarjeta -->
+          <svg class="coworker-nfc-icon" viewBox="0 0 24 24">
+            <path d="M4 20h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2zM4 6h16v12H4V6zm2 2v8h2V8H6zm3 0v8h2V8H9zm3 0v8h2V8h-2zm3 0v8h2V8h-2z"/>
+          </svg>
+        </div>
+      </div>
+      
+      <h2 class="coworker-scanner-title">Ready to <span>Scan</span><br>a Piece</h2>
+      <p class="coworker-scanner-instructions">
+        Coloca tu tarjeta de visitante o etiqueta NFC de espécimen cerca del detector para iniciar la exploración científica guiada por audio.
+      </p>
+      
+      <button class="coworker-space-action" id="coworker-space-btn" aria-label="Simular escaneo de tarjeta NFC">
+        Simular Escaneo (Pulsa Espacio)
+      </button>
+    </main>
+
+    <!-- Barra de Estado Inferior -->
+    <footer class="coworker-footer">
+      <div class="coworker-foot-item">
+        <span class="coworker-foot-label">Station ID</span>
+        <span class="coworker-foot-value">Hub-Alpha-04</span>
+      </div>
+      <div class="coworker-foot-item">
+        <span class="coworker-foot-label">Session State</span>
+        <span class="coworker-foot-value" id="coworker-session-state">Waiting_For_Input</span>
+      </div>
+      <div class="coworker-action-group">
+        <button class="coworker-action-btn" aria-label="Obtener Ayuda">
+          <svg class="coworker-btn-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+          <span>Get Help</span>
+        </button>
+        <button class="coworker-action-btn" aria-label="Cambiar idioma a Inglés">
+          <svg class="coworker-btn-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 00-1.38-3.56A8.03 8.03 0 0118.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.34-.14 2 0 .66.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.987 7.987 0 015.08 16zm2.95-8H5.08a7.987 7.987 0 013.96-3.56 15.65 15.65 0 00-1.38 3.56zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.34-.16-2 0-.66.07-1.34.16-2h4.68c.09.66.16 1.34.16 2 0 .66-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a7.987 7.987 0 01-4.33 3.56zM16.36 14c.08-.66.14-1.34.14-2 0-.66-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+          <span>English</span>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================================================
+       PUNTO DE INYECCIÓN DEL PLUGIN AISLADO DE ACCESIBILIDAD NFC
+       ========================================================================== -->
+  <div id="nfc-plugin-root"></div>
+
+  <!-- ==========================================================================
+       CONSOLA DE SIMULACIÓN DE ARDUINO (Para pruebas sin placa física)
+       ========================================================================== -->
+  <div class="nfc-simulator-dashboard collapsed" id="nfc-simulator-dash">
+    <div class="nfc-sim-header" id="nfc-sim-header-trigger" aria-expanded="false" role="button" tabindex="0" aria-label="Abrir panel de simulación Arduino">
+      <div class="nfc-sim-title">
+        <span style="display:inline-block; width:8px; height:8px; background-color:#39ff14; border-radius:50%"></span>
+        Simulador Arduino USB (Web Serial Mock)
+      </div>
+      <div class="nfc-sim-toggle-indicator" id="nfc-sim-toggle-icon">▲ ABRIENDO PANEL DE DESARROLLADOR</div>
+    </div>
+
+    <div class="nfc-sim-body">
+      <!-- Panel de Escaneo de Tarjetas NFC -->
+      <div class="nfc-sim-panel">
+        <span class="nfc-sim-panel-title">Escanear Tarjetas NFC (Hardware RFID)</span>
+        <div class="nfc-sim-buttons-grid">
+          <button class="nfc-sim-btn" data-sim="NFC_UID:044BFA197F6180">Spiral Ammonite</button>
+          <button class="nfc-sim-btn" data-sim="NFC_UID:04D0241B7F6180">Trilobite Fossil</button>
+          <button class="nfc-sim-btn" data-sim="NFC_UID:04A4391D7F6180">Tupuxuara Skull</button>
+          <button class="nfc-sim-btn" data-sim="NFC_UID:04F6DA1A7F6180">Megatherium Claw</button>
+          <button class="nfc-sim-btn" data-sim="NFC_UID:04CAB01B7F6181">Obsidian Core</button>
+          <button class="nfc-sim-btn" data-sim="NFC_UID:FFFFFFFFFFFFFF">Tarjeta Desconocida</button>
+        </div>
+      </div>
+
+      <!-- Panel de Comandos de Control Arduino -->
+      <div class="nfc-sim-panel">
+        <span class="nfc-sim-panel-title">Comandos de Control (Pulsadores Físicos)</span>
+        <div class="nfc-sim-buttons-grid">
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:PAUSE_TOGGLE">PAUSE_TOGGLE</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:STOP">STOP</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:VOL_UP">VOL_UP (+10%)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:VOL_DOWN">VOL_DOWN (-10%)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:SPEED_UP">SPEED_UP (+0.25x)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:SPEED_DOWN">SPEED_DOWN (-0.25x)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:MODE_TOGGLE">MODE_TOGGLE (Cambiar Modo)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:PREV">PREV (Anterior)</button>
+          <button class="nfc-sim-btn nfc-sim-btn-cmd" data-sim="CMD:NEXT">NEXT (Siguiente)</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Monitoreo de Terminal y Conexión USB Física -->
+    <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:1.5rem; margin-top:0.5rem; border-top:1px solid #222; padding-top:0.75rem;">
+      <div class="nfc-sim-panel">
+        <span class="nfc-sim-panel-title">Puerto Web Serial (Físico)</span>
+        <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.25rem;">
+          <button class="nfc-sim-submit-btn" id="nfc-usb-connect-btn" style="background-color:#39ff14; color:#000;">
+            Conectar Dispositivo Arduino (USB)
+          </button>
+          <div style="font-size:0.65rem; color:#aaa; line-height:1.3;">
+            * Nota: La Web Serial API requiere HTTPS o localhost, y permiso explícito del puerto.
+          </div>
+        </div>
+      </div>
+
+      <div class="nfc-sim-panel">
+        <span class="nfc-sim-panel-title">Terminal Serial Monitor (Rx / Tx)</span>
+        <div class="nfc-sim-console" id="nfc-sim-console">
+          <div class="nfc-sim-console-line">[SISTEMA]: Inicializado simulador de puerto serial local a 9600 baudios.</div>
+        </div>
+        <div class="nfc-sim-manual-input-row">
+          <input type="text" class="nfc-sim-input" id="nfc-sim-input" placeholder="Enviar comando manual (ej: CMD:VOL_UP)">
+          <button class="nfc-sim-submit-btn" id="nfc-sim-send-btn">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VINCULACIÓN E INTEGRACIÓN DE SCRIPTS
+       ========================================================================== -->
+  <script src="nfc-accessibility-plugin.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const consoleNode = document.getElementById('nfc-sim-console');
+      const simDashboard = document.getElementById('nfc-simulator-dash');
+      const simHeaderTrigger = document.getElementById('nfc-sim-header-trigger');
+      const simToggleIcon = document.getElementById('nfc-sim-toggle-icon');
+      const spaceBtn = document.getElementById('coworker-space-btn');
+      
+      // Log de la consola
+      function logToConsole(message, type = 'SYS') {
+        const line = document.createElement('div');
+        line.className = 'nfc-sim-console-line';
+        const timestamp = new Date().toLocaleTimeString();
+        line.textContent = `[${timestamp}] [${type}]: ${message}`;
+        consoleNode.appendChild(line);
+        consoleNode.scrollTop = consoleNode.scrollHeight;
+      }
+      window.NfcSimulatorLog = logToConsole;
+
+      // Interceptar comandos simulados de los botones
+      document.querySelectorAll('.nfc-sim-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const simCmd = btn.getAttribute('data-sim');
+          logToConsole(simCmd, 'TX');
+          
+          // Ejecutar el parser en el plugin aislado
+          if (window.NfcPlugin && window.NfcPlugin.simulateCommand) {
+            window.NfcPlugin.simulateCommand(simCmd);
+          }
+        });
+      });
+
+      // Enviar comando manual desde la consola
+      const manualInput = document.getElementById('nfc-sim-input');
+      const sendBtn = document.getElementById('nfc-sim-send-btn');
+      
+      function sendManualCommand() {
+        const val = manualInput.value.trim();
+        if (val) {
+          logToConsole(val, 'MANUAL');
+          if (window.NfcPlugin && window.NfcPlugin.simulateCommand) {
+            window.NfcPlugin.simulateCommand(val);
+          }
+          manualInput.value = '';
+        }
+      }
+      sendBtn.addEventListener('click', sendManualCommand);
+      manualInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          sendManualCommand();
+        }
+      });
+
+      // Botón físico USB serial
+      document.getElementById('nfc-usb-connect-btn').addEventListener('click', () => {
+        logToConsole("Solicitando permisos del puerto USB...", 'USB');
+        if (window.NfcPlugin && window.NfcPlugin.requestHardwareConnection) {
+          window.NfcPlugin.requestHardwareConnection();
+        }
+      });
+
+      // Mostrar/Ocultar el panel de simulación en la zona inferior
+      simHeaderTrigger.addEventListener('click', toggleSimulatorPanel);
+      simHeaderTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          toggleSimulatorPanel();
+          e.preventDefault();
+        }
+      });
+
+      function toggleSimulatorPanel() {
+        const isCollapsed = simDashboard.classList.toggle('collapsed');
+        simHeaderTrigger.setAttribute('aria-expanded', !isCollapsed);
+        simToggleIcon.textContent = isCollapsed ? '▲ ABRIENDO PANEL DE DESARROLLADOR' : '▼ CERRANDO PANEL DE DESARROLLADOR';
+        logToConsole(isCollapsed ? "Consola replegada." : "Consola expandida.", 'SYS');
+      }
+
+      // Vincular Tecla Espacio y Botón Central de Escaneo
+      function triggerInitialScan() {
+        logToConsole("Simulando detección de tarjeta NFC...", 'NFC');
+        if (window.NfcPlugin && window.NfcPlugin.simulateCommand) {
+          // Escanea la Spiral Ammonite por defecto
+          window.NfcPlugin.simulateCommand('NFC_UID:044BFA197F6180');
+        }
+      }
+
+      spaceBtn.addEventListener('click', triggerInitialScan);
+      
+      // Capturar tecla Espacio a nivel global cuando el visualizador principal del plugin está inactivo
+      window.addEventListener('keydown', (e) => {
+        // Solo disparar si no se está escribiendo en el input de comandos o si la UI no está activa
+        if (e.key === ' ' && document.activeElement !== manualInput) {
+          const pluginState = window.NfcPlugin ? window.NfcPlugin.getState() : {};
+          if (!pluginState.isActive) {
+            triggerInitialScan();
+            e.preventDefault();
+          }
+        }
+      });
+
+      // Vincular MutationObserver para detectar si el plugin se activa u oculta y sincronizar estados de UI de la landpage
+      const targetNode = document.getElementById('nfc-plugin-root');
+      const observerOptions = { attributes: true, attributeFilter: ['class'] };
+      
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            const isPluginActive = targetNode.classList.contains('nfc-active');
+            const coworkerLanding = document.getElementById('coworker-landing-view');
+            const sessionState = document.getElementById('coworker-session-state');
+            
+            if (isPluginActive) {
+              coworkerLanding.style.opacity = '0';
+              coworkerLanding.style.pointerEvents = 'none';
+              sessionState.textContent = 'EXPLORING_PIECE_ACTIVE';
+              logToConsole('Plugin de Accesibilidad Activado: Ocultando vista base.', 'SYS');
+            } else {
+              coworkerLanding.style.opacity = '1';
+              coworkerLanding.style.pointerEvents = 'auto';
+              sessionState.textContent = 'WAITING_FOR_INPUT';
+              logToConsole('Plugin de Accesibilidad Pasivo: Restaurando vista de espera.', 'SYS');
+            }
+          }
+        });
+      });
+      
+      observer.observe(targetNode, observerOptions);
+    });
+  </script>
+</body>
+</html>
